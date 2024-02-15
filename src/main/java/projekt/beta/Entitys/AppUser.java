@@ -26,6 +26,9 @@ public class AppUser {
     @Size(min = 8,message = "Minimum password length: 8 characters")
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
     //Secutiry dodac
     //@ElementCollection(fetch = FetchType.LAZY)
     //List<AppUserRole> appuserrole;
