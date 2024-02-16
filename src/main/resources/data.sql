@@ -70,7 +70,7 @@ VALUES ('123 Main St', 'New York', '10001'),
        ('1616 Ash St', 'Las Vegas', '89101'),
        ('1717 Pine St', 'Minneapolis', '55401'),
        ('1818 Oak St', 'Detroit', '48201');
-INSERT INTO app_user (id, name, surname, email, password,address_id)
+INSERT INTO members (id, name, surname, email, password, address_id)
 VALUES (1, 'John', 'Doe', 'john.doe@example.com', 'password1', 1),
        (2, 'Jane', 'Smith', 'jane.smith@example.com', 'password2', 2),
        (3, 'Alice', 'Johnson', 'alice.johnson@example.com', 'password3', 3),
@@ -91,7 +91,7 @@ VALUES (1, 'John', 'Doe', 'john.doe@example.com', 'password1', 1),
        (18, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', 'password18', 18),
        (19, 'Mia', 'Lopez', 'mia.lopez@example.com', 'password19', 19),
        (20, 'Logan', 'Martinez', 'logan.martinez@example.com', 'password20', 20);
-INSERT INTO Assignment (task_id, user_id)
+INSERT INTO Assignment (task_id, members_id)
 VALUES (1, 1),
        (2, 2),
        (3, 3),
@@ -112,3 +112,16 @@ VALUES (1, 1),
        (18, 18),
        (19, 19),
        (20, 20);
+
+INSERT INTO role (name)
+VALUES ('Admin'),
+       ('User');
+
+INSERT INTO roles (members_id, role_id)
+VALUES (1, 1),
+       (2, 2);
+
+INSERT INTO Assignment (task_id, members_id)
+VALUES (1, 1),
+       (2, 2),
+       (3, 1);
