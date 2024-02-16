@@ -13,7 +13,7 @@ public class Assignment {
     private Task task;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private AppUser user;
+    @JoinColumn(name = "members_id")
+    private Members user;
     // Getters and setters
 }
