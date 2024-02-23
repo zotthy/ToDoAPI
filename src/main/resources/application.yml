@@ -10,3 +10,5 @@ spring:
   h2:
     console:
       enabled: true
+jws:
+  sharedKey: 90b571f5-72b4-4e20-bc61-4929a871c4d0

@@ -70,27 +70,27 @@ VALUES ('123 Main St', 'New York', '10001'),
        ('1616 Ash St', 'Las Vegas', '89101'),
        ('1717 Pine St', 'Minneapolis', '55401'),
        ('1818 Oak St', 'Detroit', '48201');
-INSERT INTO members (id, name, surname, email, password, address_id)
-VALUES (1, 'John', 'Doe', 'john.doe@example.com', 'password1', 1),
-       (2, 'Jane', 'Smith', 'jane.smith@example.com', 'password2', 2),
-       (3, 'Alice', 'Johnson', 'alice.johnson@example.com', 'password3', 3),
-       (4, 'Bob', 'Miller', 'bob.miller@example.com', 'password4', 4),
-       (5, 'Emily', 'Jones', 'emily.jones@example.com', 'password5', 5),
-       (6, 'David', 'Williams', 'david.williams@example.com', 'password6', 6),
-       (7, 'Olivia', 'Brown', 'olivia.brown@example.com', 'password7', 7),
-       (8, 'Michael', 'Taylor', 'michael.taylor@example.com', 'password8', 8),
-       (9, 'Sophia', 'Moore', 'sophia.moore@example.com', 'password9', 9),
-       (10, 'Daniel', 'Clark', 'daniel.clark@example.com', 'password10', 10),
-       (11, 'Emma', 'Lee', 'emma.lee@example.com', 'password11', 11),
-       (12, 'Matthew', 'White', 'matthew.white@example.com', 'password12', 12),
-       (13, 'Ava', 'Anderson', 'ava.anderson@example.com', 'password13', 13),
-       (14, 'William', 'Harris', 'william.harris@example.com', 'password14', 14),
-       (15, 'Ella', 'Martin', 'ella.martin@example.com', 'password15', 15),
-       (16, 'James', 'Thompson', 'james.thompson@example.com', 'password16', 16),
-       (17, 'Amelia', 'Garcia', 'amelia.garcia@example.com', 'password17', 17),
-       (18, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', 'password18', 18),
-       (19, 'Mia', 'Lopez', 'mia.lopez@example.com', 'password19', 19),
-       (20, 'Logan', 'Martinez', 'logan.martinez@example.com', 'password20', 20);
+INSERT INTO members (name, surname, email, password, address_id)
+VALUES ('John', 'Doe', 'john.doe@example.com', '$2a$13$JCluwrAdOFZoz4BniHaL5eH0.9wzTLU.aEGA78bEJprmIHhFLPOD2', 1),
+       ('Jane', 'Smith', 'jane.smith@example.com', 'password2', 2),
+       ('Alice', 'Johnson', 'alice.johnson@example.com', 'password3', 3),
+       ('Bob', 'Miller', 'bob.miller@example.com', 'password4', 4),
+       ('Emily', 'Jones', 'emily.jones@example.com', 'password5', 5),
+       ('David', 'Williams', 'david.williams@example.com', 'password6', 6),
+       ('Olivia', 'Brown', 'olivia.brown@example.com', 'password7', 7),
+       ('Michael', 'Taylor', 'michael.taylor@example.com', 'password8', 8),
+       ('Sophia', 'Moore', 'sophia.moore@example.com', 'password9', 9),
+       ('Daniel', 'Clark', 'daniel.clark@example.com', 'password10', 10),
+       ('Emma', 'Lee', 'emma.lee@example.com', 'password11', 11),
+       ('Matthew', 'White', 'matthew.white@example.com', 'password12', 12),
+       ('Ava', 'Anderson', 'ava.anderson@example.com', 'password13', 13),
+       ('William', 'Harris', 'william.harris@example.com', 'password14', 14),
+       ('Ella', 'Martin', 'ella.martin@example.com', 'password15', 15),
+       ('James', 'Thompson', 'james.thompson@example.com', 'password16', 16),
+       ('Amelia', 'Garcia', 'amelia.garcia@example.com', 'password17', 17),
+       ('Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', 'password18', 18),
+       ('Mia', 'Lopez', 'mia.lopez@example.com', 'password19', 19),
+       ('Logan', 'Martinez', 'logan.martinez@example.com', 'password20', 20);
 INSERT INTO Assignment (task_id, members_id)
 VALUES (1, 1),
        (2, 2),
@@ -117,7 +117,7 @@ INSERT INTO role (name)
 VALUES ('Admin'),
        ('User');
 
-INSERT INTO roles (members_id, role_id)
+INSERT INTO user_roles (members_id, role_id)
 VALUES (1, 1),
        (2, 2);
 

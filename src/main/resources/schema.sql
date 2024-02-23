@@ -34,26 +34,26 @@ CREATE TABLE members
 (
     id         BIGINT PRIMARY KEY AUTO_INCREMENT,
     name       VARCHAR(30)        NOT NULL,
-    surname    VARCHAR(30)        NULL,
+    surname    VARCHAR(30)        not NULL,
     email      VARCHAR(30) UNIQUE NOT NULL,
-    password   VARCHAR(30)        NOT NULL,
+    password   VARCHAR(70)        NOT NULL,
     address_id BIGINT,
     FOREIGN KEY (address_id) REFERENCES Address (id)
 );
 
-CREATE TABLE roles
+CREATE TABLE user_roles
 (
-    id      BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id         BIGINT AUTO_INCREMENT PRIMARY KEY,
     members_id BIGINT NOT NULL,
-    role_id BIGINT NOT NULL,
+    role_id    BIGINT NOT NULL,
     FOREIGN KEY (members_id) REFERENCES members (id),
     FOREIGN KEY (role_id) REFERENCES role (id)
 );
 
 CREATE TABLE Assignment
 (
-    id      BIGINT PRIMARY KEY AUTO_INCREMENT,
-    task_id BIGINT,
+    id         BIGINT PRIMARY KEY AUTO_INCREMENT,
+    task_id    BIGINT,
     members_id BIGINT,
     FOREIGN KEY (task_id) REFERENCES Task (id),
     FOREIGN KEY (members_id) REFERENCES members (id)
