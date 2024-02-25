@@ -26,6 +26,7 @@ class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
         new ObjectMapper().writeValue(response.getWriter(), new JwtWrapper(signedJWT));
     }
 
-    private record JwtWrapper(String token){ }
+    private record JwtWrapper(String token) {
+    }
 }
 

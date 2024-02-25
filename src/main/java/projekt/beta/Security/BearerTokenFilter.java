@@ -55,6 +55,7 @@ public class BearerTokenFilter extends HttpFilter {
             }
         }
     }
+
     private void setSecurityContext(SignedJWT signedJwt) {
         Authentication authentication = jwtService.createAuthentication(signedJwt);
         SecurityContext securityContext = securityContextHolderStrategy.getContext();

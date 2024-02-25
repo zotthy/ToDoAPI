@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class JwtAuthenticationFilter extends HttpFilter {
     private final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
-    private static final RequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/auth", "POST", false);
+    private static final RequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/login", "POST", false);
     private final AuthenticationManager authenticationManager;
     private final AuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
     private final AuthenticationSuccessHandler successHandler;
@@ -31,6 +31,7 @@ public class JwtAuthenticationFilter extends HttpFilter {
         this.authenticationManager = authenticationManager;
         successHandler = new JwtAuthenticationSuccessHandler(jwtService);
     }
+
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         if (!DEFAULT_ANT_PATH_REQUEST_MATCHER.matches(request)) {

@@ -70,8 +70,9 @@ VALUES ('123 Main St', 'New York', '10001'),
        ('1616 Ash St', 'Las Vegas', '89101'),
        ('1717 Pine St', 'Minneapolis', '55401'),
        ('1818 Oak St', 'Detroit', '48201');
+
 INSERT INTO members (name, surname, email, password, address_id)
-VALUES ('John', 'Doe', 'john.doe@example.com', '$2a$13$JCluwrAdOFZoz4BniHaL5eH0.9wzTLU.aEGA78bEJprmIHhFLPOD2', 1),
+VALUES ('John', 'Doe', 'admin@admin.com', '$2a$13$9kqnZ.VftG7t2z7R5LiVJeMDZ1/lWbbI/XjoNtoGsyvlupmKrBfri', 1),
        ('Jane', 'Smith', 'jane.smith@example.com', 'password2', 2),
        ('Alice', 'Johnson', 'alice.johnson@example.com', 'password3', 3),
        ('Bob', 'Miller', 'bob.miller@example.com', 'password4', 4),
@@ -114,8 +115,8 @@ VALUES (1, 1),
        (20, 20);
 
 INSERT INTO role (name)
-VALUES ('Admin'),
-       ('User');
+VALUES ('ADMIN'),
+       ('USER');
 
 INSERT INTO user_roles (members_id, role_id)
 VALUES (1, 1),
