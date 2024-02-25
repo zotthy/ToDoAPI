@@ -25,7 +25,7 @@ public class MembersService {
     private final String USER_ROLE = "USER";
 
     public MembersService(MembersRepozytory membersRepozytory, PasswordEncoder passwordEncoder,
-                          MembersRegisterDtoMapper membersRegisterDtoMapper,UserRoleRepozytory userRoleRepozytory) {
+                          MembersRegisterDtoMapper membersRegisterDtoMapper, UserRoleRepozytory userRoleRepozytory) {
         this.membersRepozytory = membersRepozytory;
         this.passwordEncoder = passwordEncoder;
         this.membersRegisterDtoMapper = membersRegisterDtoMapper;
@@ -39,18 +39,16 @@ public class MembersService {
 
     @Transactional
     public void register(MembersRegisterDto membersRegisterDto) {
-        if (!membersRepozytory.existsByEmail(membersRegisterDto.getEmail())) {
+        if (membersRepozytory.existsByEmail(membersRegisterDto.getEmail())) {
             throw new ExistsException("User with the same email!");
         }
         String encodePassword = passwordEncoder.encode(membersRegisterDto.getPassword());
-        Members saveMember = membersRegisterDtoMapper.map(membersRegisterDto);
+        Members saveMember = MembersRegisterDtoMapper.map(membersRegisterDto);
         saveMember.setPassword(encodePassword);
         UserRole userRole = userRoleRepozytory.findByName(USER_ROLE)
                 .orElseThrow(() -> new RuntimeException("Not found"));
         saveMember.getRoles().add(userRole);
         membersRepozytory.save(saveMember);
-        System.out.println(encodePassword);
-        System.out.println(saveMember);
     }
 
 }

@@ -8,8 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class MembersLoginDtoMapper{
-    public static MembersLoginDto map(Members user){
+public class MembersLoginDtoMapper {
+    public static MembersLoginDto map(Members user) {
         String email = user.getEmail();
         String password = user.getPassword();
         Set<String> roles = user.getRoles()

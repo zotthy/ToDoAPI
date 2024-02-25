@@ -31,6 +31,7 @@ public class JwtAuthenticationFilter extends HttpFilter {
         this.authenticationManager = authenticationManager;
         successHandler = new JwtAuthenticationSuccessHandler(jwtService);
     }
+
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         if (!DEFAULT_ANT_PATH_REQUEST_MATCHER.matches(request)) {

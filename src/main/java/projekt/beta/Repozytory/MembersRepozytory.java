@@ -6,7 +6,8 @@ import projekt.beta.Entitys.Members;
 
 import java.util.Optional;
 
-public interface  MembersRepozytory extends JpaRepository<Members,Long> {
+public interface MembersRepozytory extends JpaRepository<Members, Long> {
     Optional<Members> findByEmail(String email);
+
     boolean existsByEmail(String email);
 }

@@ -115,8 +115,8 @@ VALUES (1, 1),
        (20, 20);
 
 INSERT INTO role (name)
-VALUES ('Admin'),
-       ('User');
+VALUES ('ADMIN'),
+       ('USER');
 
 INSERT INTO user_roles (members_id, role_id)
 VALUES (1, 1),

@@ -5,7 +5,7 @@ import projekt.beta.Entitys.Members;
 
 @Service
 public class MembersRegisterDtoMapper {
-    public static Members map(MembersRegisterDto membersRegisterDto){
+    public static Members map(MembersRegisterDto membersRegisterDto) {
         Members members = new Members();
         members.setId(membersRegisterDto.getId());
         members.setName(membersRegisterDto.getName());

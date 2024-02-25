@@ -6,6 +6,6 @@ import projekt.beta.Entitys.UserRole;
 
 import java.util.Optional;
 
-public interface UserRoleRepozytory extends JpaRepository<UserRole,Long> {
+public interface UserRoleRepozytory extends JpaRepository<UserRole, Long> {
     Optional<UserRole> findByName(String name);
 }
