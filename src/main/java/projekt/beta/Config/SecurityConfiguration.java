@@ -38,7 +38,8 @@ public class SecurityConfiguration {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtService);
         BearerTokenFilter bearerTokenFilter = new BearerTokenFilter(jwtService);
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers(mvc.pattern("/auth")).permitAll());
+                .requestMatchers(mvc.pattern("/login")).permitAll()
+                .requestMatchers(mvc.pattern("/auth/register")).permitAll());
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf(csrfCustomizer -> csrfCustomizer.disable());
         http.addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);
