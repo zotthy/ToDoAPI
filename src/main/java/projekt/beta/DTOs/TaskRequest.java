@@ -1,30 +1,14 @@
 package projekt.beta.DTOs;
 
-import projekt.beta.Entitys.Category;
-
 import java.time.LocalDate;
 
-public class TaskDTO {
-    private Long id;
-
+public class TaskRequest {
     private String title;
-
     private String description;
-
     private LocalDate due_date;
-
     private String priority;
     private String status;
-
-    private Long category;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Long category_id;
 
     public String getTitle() {
         return title;
@@ -66,11 +50,11 @@ public class TaskDTO {
         this.status = status;
     }
 
-    public Long getCategory() {
-        return category;
+    public Long getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory(Long category) {
-        this.category = category;
+    public void setCategory_id(Long category_id) {
+        this.category_id = category_id;
     }
 }

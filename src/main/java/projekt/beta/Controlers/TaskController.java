@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projekt.beta.DTOs.TaskDTO;
+import projekt.beta.DTOs.TaskRequest;
 import projekt.beta.Repozytory.TaskRepozytory;
 import projekt.beta.Services.TaskService;
 
@@ -21,12 +22,8 @@ public class TaskController {
     }
 
     @PostMapping("/addTask")
-    public ResponseEntity<TaskDTO> saveTask(@RequestBody TaskDTO taskDTO){
-        TaskDTO savedata = taskService.saveTask(taskDTO);
-        URI savedUri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedata.getId())
-                .toUri();
-        return ResponseEntity.created(savedUri).body(savedata);
+    public ResponseEntity<TaskDTO> saveTask(@RequestBody TaskRequest taskRequest){
+        TaskDTO createTask = taskService.addTaskWithExistingCategory(taskRequest);
+        return new ResponseEntity<>(createTask,HttpStatus.CREATED);
     }
 }
