@@ -3,7 +3,6 @@ package projekt.beta.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,13 +17,12 @@ import projekt.beta.Security.BearerTokenFilter;
 import projekt.beta.Security.JwtAuthenticationFilter;
 import projekt.beta.Security.JwtService;
 
-
+@Profile("fac")
 @Configuration
-@Profile("full")
-public class SecurityConfiguration {
+public class SecurityConfigurationFactory {
     private final JwtService jwtService;
 
-    public SecurityConfiguration(JwtService jwtService) {
+    public SecurityConfigurationFactory(JwtService jwtService) {
         this.jwtService = jwtService;
     }
 
@@ -43,6 +41,7 @@ public class SecurityConfiguration {
                 .anyRequest().permitAll());
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf(csrfCustomizer -> csrfCustomizer.disable());
+        http.headers().frameOptions().disable();
         http.addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);
         http.addFilterBefore(bearerTokenFilter, AuthorizationFilter.class);
         return http.build();
@@ -53,5 +52,3 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 }
-
-
