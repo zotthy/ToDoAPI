@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    default: "fac"
   datasource:
     url: jdbc:h2:mem:test
     username: admin

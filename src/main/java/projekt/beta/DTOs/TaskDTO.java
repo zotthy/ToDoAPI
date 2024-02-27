@@ -1,27 +1,22 @@
-package projekt.beta.Entitys;
+package projekt.beta.DTOs;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import projekt.beta.Entitys.Category;
 
 import java.time.LocalDate;
 
-@Entity
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TaskDTO {
     private Long id;
-    @NotNull
+
     private String title;
-    @NotNull
+
     private String description;
 
     private LocalDate due_date;
 
     private String priority;
     private String status;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+
+    private Long category;
 
     public Long getId() {
         return id;
@@ -71,11 +66,11 @@ public class Task {
         this.status = status;
     }
 
-    public Category getCategory() {
+    public Long getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Long category) {
         this.category = category;
     }
 }
