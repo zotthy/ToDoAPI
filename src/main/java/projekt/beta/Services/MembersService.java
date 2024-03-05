@@ -1,5 +1,6 @@
 package projekt.beta.Services;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,14 @@ public class MembersService {
                 .orElseThrow(() -> new RuntimeException("Not found"));
         saveMember.getRoles().add(userRole);
         membersRepozytory.save(saveMember);
+    }
+
+    public Long getIdByEmail(String email){
+        return membersRepozytory.findByEmail(email)
+                .orElseThrow(()-> new EntityNotFoundException("Not found with email")).getId();
+    }
+    public Optional<Members> getMemberByEmail(String email) {
+        return membersRepozytory.findByEmail(email);
     }
 
 }
