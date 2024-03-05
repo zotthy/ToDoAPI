@@ -5,6 +5,7 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+import com.sun.jdi.event.StepEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -92,6 +93,14 @@ public class JwtService {
         return new UsernamePasswordAuthenticationToken(subject, null, grantedAuthorities);
     }
 
-
+    public String getEmailFromToken(String token) {
+        try {
+            SignedJWT signedJWT = SignedJWT.parse(token);
+            JWTClaimsSet jwtClaimsSet = signedJWT.getJWTClaimsSet();
+            return jwtClaimsSet.getSubject();
+        } catch (ParseException e){
+            throw new JwtAuthenticationException("Failed to get email from token");
+        }
+    }
 }
 
