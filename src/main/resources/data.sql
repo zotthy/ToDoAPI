@@ -74,7 +74,7 @@ VALUES ('123 Main St', 'New York', '10001'),
 INSERT INTO members (name, surname, email, password, address_id)
 VALUES ('John', 'Doe', 'admin@admin.com', '$2a$13$9kqnZ.VftG7t2z7R5LiVJeMDZ1/lWbbI/XjoNtoGsyvlupmKrBfri', 1),
        ('Jane', 'Smith', 'jane.smith@example.com', '$2a$12$d0oZz3ZRpKrYlvqIKM/OGuf9UGnqm4arvvFiJF.BVDKU8GggKS7NS', 2),
-       ('Alice', 'Johnson', 'alice.johnson@example.com', 'password3', 3),
+       ('Alice', 'Johnson', 'alice.johnson@example.com', '$2a$12$d0oZz3ZRpKrYlvqIKM/OGuf9UGnqm4arvvFiJF.BVDKU8GggKS7NS', 3),
        ('Bob', 'Miller', 'bob.miller@example.com', 'dqs', 4),
        ('Emily', 'Jones', 'emily.jones@example.com', 'password5', 5),
        ('David', 'Williams', 'david.williams@example.com', 'password6', 6),
@@ -95,8 +95,8 @@ VALUES ('John', 'Doe', 'admin@admin.com', '$2a$13$9kqnZ.VftG7t2z7R5LiVJeMDZ1/lWb
 INSERT INTO Assignment (task_id, members_id)
 VALUES (1, 1),
        (2, 2),
-       (3, 3),
-       (4, 4),
+       (2, 2),
+       (2, 2),
        (5, 5),
        (6, 6),
        (7, 7),
@@ -120,7 +120,8 @@ VALUES ('ADMIN'),
 
 INSERT INTO user_roles (members_id, role_id)
 VALUES (1, 1),
-       (2, 2);
+       (2, 1),
+       (3, 1);
 
 INSERT INTO Assignment (task_id, members_id)
 VALUES (1, 1),

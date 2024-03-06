@@ -1,7 +1,8 @@
 package projekt.beta.Services;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.hibernate.query.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import projekt.beta.DTOs.TaskDTO;
 import projekt.beta.DTOs.TaskDTOMapper;
@@ -15,9 +16,8 @@ import projekt.beta.Repozytory.CategoryRepozytory;
 import projekt.beta.Repozytory.MembersRepozytory;
 import projekt.beta.Repozytory.TaskRepozytory;
 import projekt.beta.Security.JwtService;
-
-import java.awt.print.Pageable;
-import java.text.ParseException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,11 +54,11 @@ public class TaskService {
         return userEmail;
     }
 
-    public TaskDTO addTaskWithExistingCategory(TaskRequest taskRequest, String token) {
+    public TaskDTO addTaskWithExistingCategory(TaskRequest taskRequest, String userJwtToken) {
         Category existingCategory = categoryRepozytory.findById(taskRequest.getCategory_id())
                 .orElseThrow(() -> new RuntimeException("Category with ID " + taskRequest.getCategory_id() + " not found."));
-        String email = getUserEmail(token);
-        Long memberId = membersService.getIdByEmail(email);
+        String userEmail = getUserEmail(userJwtToken);
+        Long memberId = membersService.getIdByEmail(userEmail);
 
         Task task = taskDTOMapper.mapToEntity(taskRequest, existingCategory);
         Task savedTask = taskRepozytory.save(task);
@@ -90,9 +90,10 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
-    public List<TaskDTO> getTasksByUser(String userJwtToken) {
-        String actualToken = userJwtToken.replace("Bearer ", "");
-        String userEmail = jwtService.getEmailFromToken(actualToken);
+    public Page<TaskDTO> getTasksByUser(String userJwtToken, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        String userEmail = getUserEmail(userJwtToken);
+
         Optional<Members> memberOpt = membersService.getMemberByEmail(userEmail);
 
         if (!memberOpt.isPresent()) {
@@ -100,12 +101,9 @@ public class TaskService {
         }
 
         Long memberId = memberOpt.get().getId();
-        List<Assignment> assignments = assigmentRepozytory.findByUserId(memberId);
 
-        return assignments.stream()
-                .map(Assignment::getTask)
-                .map(taskDTOMapper::mapToDTO)
-                .collect(Collectors.toList());
+        Page<Assignment> assignments = assigmentRepozytory.findByUserId(memberId,pageable);
+        return assignments.map(assignment -> taskDTOMapper.mapToDTO(assignment.getTask()));
     }
 
 }
