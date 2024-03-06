@@ -1,6 +1,5 @@
 package projekt.beta.DTOs;
 
-import projekt.beta.Entitys.Category;
 
 import java.time.LocalDate;
 

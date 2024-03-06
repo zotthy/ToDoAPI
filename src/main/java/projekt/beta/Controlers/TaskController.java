@@ -1,5 +1,8 @@
 package projekt.beta.Controlers;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +30,12 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public ResponseEntity<List<TaskDTO>> display(@RequestHeader("Authorization") String token) {
-        List<TaskDTO> taskDTOList = taskService.getTasksByUser(token);
-        if (taskDTOList.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return new ResponseEntity<>(taskDTOList, HttpStatus.OK);
-        }
+    public ResponseEntity<List<TaskDTO>> display(@RequestHeader("Authorization") String userJwtToken,
+                                                 @RequestParam(defaultValue = "0") int page,
+                                                 @RequestParam(defaultValue = "5") int size) {
+        Page<TaskDTO> pageResult = taskService.getTasksByUser(userJwtToken, page, size);
+
+        return new ResponseEntity<>(pageResult.getContent(), HttpStatus.OK);
     }
 
     @GetMapping("/tasks/{id}")
