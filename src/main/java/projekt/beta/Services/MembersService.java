@@ -63,9 +63,15 @@ public class MembersService {
     }
 
     public Optional<MembersDTO> getUserInfo(String token) {
-        String email = token;
+        String email = getIdFromToken(token);
+        return membersRepozytory.findByEmail(email).map(membersDTOMapper::mapToDto);
+    }
+
+    private String getIdFromToken(String token){
+        String actualToken = token.replace("Bearer ", "");
+        String email = jwtService.getEmailFromToken(actualToken);
         System.out.println(email);
-        return membersRepozytory.findById(2l).map(membersDTOMapper::mapToDto);
+        return email;
     }
 
 }
