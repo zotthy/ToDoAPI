@@ -24,7 +24,8 @@ public class TaskController {
     }
 
     @PostMapping("/addTask")
-    public ResponseEntity<TaskDTO> saveTask(@RequestBody TaskRequest taskRequest, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<TaskDTO> saveTask(@RequestBody TaskRequest taskRequest,
+                                            @RequestHeader("Authorization") String token) {
         TaskDTO createTask = taskService.addTaskWithExistingCategory(taskRequest, token);
         return new ResponseEntity<>(createTask, HttpStatus.CREATED);
     }
@@ -39,7 +40,8 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{id}")
-    public ResponseEntity<List<TaskDTO>> getById(@PathVariable Long id, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<List<TaskDTO>> getById(@PathVariable Long id,
+                                                 @RequestHeader("Authorization") String token) {
         List<TaskDTO> taskDTOList = taskService.getTasksByUserAndId(id, token);
         if (taskDTOList.isEmpty()) {
             return ResponseEntity.notFound().build();

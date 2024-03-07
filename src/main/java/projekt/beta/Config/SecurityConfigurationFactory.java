@@ -44,7 +44,8 @@ public class SecurityConfigurationFactory {
                 .requestMatchers(mvc.pattern("/auth/login")).permitAll()
                 .requestMatchers(mvc.pattern(HttpMethod.POST,"/addTask")).hasRole("USER")
                 .requestMatchers(mvc.pattern(HttpMethod.GET,"/tasks")).hasRole("USER")
-                .requestMatchers(mvc.pattern(HttpMethod.GET,"/tasks/{id}")).hasRole("USER"));
+                .requestMatchers(mvc.pattern(HttpMethod.GET,"/tasks/{id}")).hasRole("USER")
+                .requestMatchers(mvc.pattern(HttpMethod.GET,"/profile")).hasRole("USER"));
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf(csrfCustomizer -> csrfCustomizer.disable());
         http.addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);
