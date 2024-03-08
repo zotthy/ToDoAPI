@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import projekt.beta.DTOs.*;
+import projekt.beta.Entitys.Address;
 import projekt.beta.Entitys.Members;
 import projekt.beta.Entitys.UserRole;
 import projekt.beta.Exceptions.ExistsException;

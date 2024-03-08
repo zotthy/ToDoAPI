@@ -17,7 +17,7 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<MembersDTO> getInfo(@RequestHeader("Authorization") String token){
+    public ResponseEntity<MembersDTO> getInfo(@RequestHeader("Authorization") String token) {
         return membersService.getUserInfo(token).map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
