@@ -8,8 +8,7 @@ public class MembersDTO {
     private String name;
     private String surname;
     private String email;
-    private String password;
-    private Address address;
+    private AddressDTO address;
 
     public Long getId() {
         return id;
@@ -43,20 +42,14 @@ public class MembersDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Address getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressDTO address) {
         this.address = address;
     }
 
+    public void setAddress(Address address) {
+    }
 }

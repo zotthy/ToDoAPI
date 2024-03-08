@@ -5,9 +5,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import projekt.beta.DTOs.*;
+import projekt.beta.Entitys.Address;
 import projekt.beta.Entitys.Members;
 import projekt.beta.Entitys.UserRole;
 import projekt.beta.Exceptions.ExistsException;
+import projekt.beta.Repozytory.AddressRepozytory;
 import projekt.beta.Repozytory.MembersRepozytory;
 import projekt.beta.Repozytory.UserRoleRepozytory;
 import projekt.beta.Security.JwtService;
@@ -21,17 +23,24 @@ public class MembersService {
     private final PasswordEncoder passwordEncoder;
     private final MembersDTOMapper membersDTOMapper;
 
+    private final AddressRepozytory addressRepozytory;
+
+    private final AddressDTOMapper addressDTOMapper;
+
     private final JwtService jwtService;
     private final String USER_ROLE = "USER";
 
     public MembersService(MembersRepozytory membersRepozytory, PasswordEncoder passwordEncoder,
                           UserRoleRepozytory userRoleRepozytory, MembersDTOMapper membersDTOMapper,
-                          JwtService jwtService) {
+                          JwtService jwtService, AddressRepozytory addressRepozytory,
+                          AddressDTOMapper addressDTOMapper) {
         this.membersRepozytory = membersRepozytory;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepozytory = userRoleRepozytory;
         this.membersDTOMapper = membersDTOMapper;
         this.jwtService = jwtService;
+        this.addressRepozytory = addressRepozytory;
+        this.addressDTOMapper = addressDTOMapper;
     }
 
     public Optional<MembersLoginDto> findCredentialsByEmail(String email) {
@@ -64,10 +73,16 @@ public class MembersService {
 
     public Optional<MembersDTO> getUserInfo(String token) {
         String email = getIdFromToken(token);
-        return membersRepozytory.findByEmail(email).map(membersDTOMapper::mapToDto);
+        return membersRepozytory.findByEmail(email)
+                .map(members -> {
+                            MembersDTO membersDTO = membersDTOMapper.mapToDto(members);
+                            Optional<Address> address = addressRepozytory.findById(members.getId());
+                            address.ifPresent(value -> membersDTO.setAddress(addressDTOMapper.mapToDto(value)));
+                            return membersDTO;
+                });
     }
 
-    private String getIdFromToken(String token){
+    private String getIdFromToken(String token) {
         String actualToken = token.replace("Bearer ", "");
         String email = jwtService.getEmailFromToken(actualToken);
         System.out.println(email);
