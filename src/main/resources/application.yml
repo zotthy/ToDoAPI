@@ -2,13 +2,14 @@ spring:
   profiles:
     default: "fac"
   datasource:
-    url: jdbc:h2:mem:test
-    username: admin
-    password: admin
+    url: jdbc:mysql://localhost:3306/db
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
   h2:
     console:
       enabled: true

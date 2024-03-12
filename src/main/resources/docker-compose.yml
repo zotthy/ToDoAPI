@@ -1,7 +1,11 @@
-version: "3"
 services:
-    springboot-app:
-      image: springboot-app
-      build: .
+  mysql:
+      container_name: bazadanych
+      image: mysql:8.2.0
       ports:
-        - 8080:8080
+        - "3306:3306"
+      environment:
+        MYSQL_DATABASE: 'db'
+        MYSQL_USER: 'user'
+        MYSQL_PASSWORD: 'password'
+        MYSQL_ROOT_PASSWORD: 'password'
