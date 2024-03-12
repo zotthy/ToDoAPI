@@ -18,8 +18,6 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import projekt.beta.Security.BearerTokenFilter;
 import projekt.beta.Security.JwtAuthenticationFilter;
 import projekt.beta.Security.JwtService;
-
-@Profile("fac")
 @Configuration
 public class SecurityConfiguration {
     private final JwtService jwtService;
@@ -45,7 +43,8 @@ public class SecurityConfiguration {
                 .requestMatchers(mvc.pattern(HttpMethod.POST,"/addTask")).hasRole("USER")
                 .requestMatchers(mvc.pattern(HttpMethod.GET,"/tasks")).hasRole("USER")
                 .requestMatchers(mvc.pattern(HttpMethod.GET,"/tasks/{id}")).hasRole("USER")
-                .requestMatchers(mvc.pattern(HttpMethod.GET,"/profile")).hasRole("USER"));
+                .requestMatchers(mvc.pattern(HttpMethod.GET,"/profile")).hasRole("USER")
+                .requestMatchers(mvc.pattern(HttpMethod.GET,"/tasks/search")).hasRole("USER"));
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf(csrfCustomizer -> csrfCustomizer.disable());
         http.addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);

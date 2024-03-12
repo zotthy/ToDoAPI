@@ -3,6 +3,7 @@ package projekt.beta.Entitys;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,12 +18,17 @@ public class Members {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Size(min = 3)
     private String name;
+    @NotNull
+    @Size(min = 3)
     private String surname;
     @NotNull
     @Email
     private String email;
-    //@Size(min = 8, message = "Minimum password length: 8 characters")
+    @NotNull
+    @Size(min = 8, message = "Minimum password length: 8 characters")
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
