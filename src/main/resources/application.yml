@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    default: "fac"
   datasource:
     url: jdbc:mysql://localhost:3306/db
     username: user
@@ -13,5 +11,9 @@ spring:
   h2:
     console:
       enabled: true
+  sql:
+    init:
+      data-locations: classpath:/import.sql
+      schema-locations: classpath:/schema.sql
 jws:
   sharedKey: 90b571f5-72b4-4e20-bc61-4929a871c4d0

@@ -15,7 +15,7 @@ public class TaskDTO {
     private String priority;
     private String status;
 
-    private Long category;
+   private CategoryDTO category;
 
     public Long getId() {
         return id;
@@ -65,11 +65,11 @@ public class TaskDTO {
         this.status = status;
     }
 
-    public Long getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(Long category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 }
