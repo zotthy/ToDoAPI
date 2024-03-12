@@ -1,4 +1,4 @@
-INSERT INTO Category (name)
+INSERT INTO category (name)
 VALUES ('Work'),
        ('Personal'),
        ('Shopping'),
@@ -19,7 +19,7 @@ VALUES ('Work'),
        ('Writing'),
        ('Cooking'),
        ('Tech');
-INSERT INTO Task (title, description, due_date, priority, status, category_id)
+INSERT INTO task (title, description, due_date, priority, status, category_id)
 VALUES ('Finish Project Proposal', 'Review and finalize project proposal for client meeting', '2024-02-15', 'High',
         'To Do', 1),
        ('Buy Groceries', 'Purchase items for the week including fruits, vegetables, and bread', '2024-02-20', 'Medium',
@@ -48,7 +48,7 @@ VALUES ('Finish Project Proposal', 'Review and finalize project proposal for cli
        ('Volunteer at Local Shelter', 'Offer time to volunteer at the local animal shelter', '2024-05-15', 'High',
         'To Do', 14),
        ('Visit Art Exhibition', 'Attend the art exhibition at the city gallery', '2024-05-20', 'Medium', 'Done', 6);
-INSERT INTO Address (street, city, zip_code)
+INSERT INTO address (street, city, zip_code)
 VALUES ('123 Main St', 'New York', '10001'),
        ('456 Oak St', 'Los Angeles', '90001'),
        ('789 Pine St', 'Chicago', '60601'),
@@ -92,7 +92,7 @@ VALUES ('John', 'Doe', 'admin@admin.com', '$2a$13$9kqnZ.VftG7t2z7R5LiVJeMDZ1/lWb
        ('Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', 'password18', 18),
        ('Mia', 'Lopez', 'mia.lopez@example.com', 'password19', 19),
        ('Logan', 'Martinez', 'logan.martinez@example.com', 'password20', 20);
-INSERT INTO Assignment (task_id, members_id)
+INSERT INTO assignment (task_id, members_id)
 VALUES (1, 1),
        (2, 2),
        (2, 2),
@@ -123,7 +123,7 @@ VALUES (1, 2),
        (2, 2),
        (3, 2);
 
-INSERT INTO Assignment (task_id, members_id)
+INSERT INTO assignment (task_id, members_id)
 VALUES (1, 1),
        (2, 2),
        (3, 1);
