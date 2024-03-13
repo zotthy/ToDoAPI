@@ -15,8 +15,14 @@
 
 # How to run
 git clone https://github.com/zotthy/ToDoAPI.git
+
+
 cd ToDoAPI
+
+
 docker compose up -d  <- run database
+
+
 /mvn:spring boot run
 
 #API Request
