@@ -25,7 +25,7 @@ docker compose up -d  <- run database
 
 /mvn:spring boot run
 
-#API Request
+# API Request
 
 Register localhost:8080/auth/register POST
 
